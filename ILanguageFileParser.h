@@ -8,7 +8,7 @@ using namespace SourceMod;
 #define SMINTERFACE_ILANGPARSER_VERSION		10
 
 #define MAX_KEY_LENGTH	128
-#define MAX_PHRASE_LENGTH	4096
+#define MAX_PHRASE_LENGTH	8192
 
 #ifdef _MSC_VER
 using ucs2_t = wchar_t;
