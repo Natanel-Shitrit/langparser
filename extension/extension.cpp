@@ -1,6 +1,5 @@
 #include "extension.h"
 #include "context.h"
-#include <byteswap.h>
 
 CExtension g_Extension;
 SMEXT_LINK(&g_Extension);
