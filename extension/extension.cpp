@@ -71,9 +71,3 @@ bool CExtension::SDK_OnLoad(char* error, size_t maxlen, bool late)
 	sharesys->AddInterface(myself, this);
 	return true;
 }
-
-bool CExtension::SDK_OnMetamodLoad(ISmmAPI* ismm, char* error, size_t maxlen, bool late)
-{
-	GET_V_IFACE_CURRENT(GetEngineFactory, g_pFileSystem, IFileSystem, FILESYSTEM_INTERFACE_VERSION);
-	return true;
-}

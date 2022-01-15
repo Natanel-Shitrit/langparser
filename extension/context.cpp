@@ -110,7 +110,7 @@ void ParserContext::SetError(ParseError_t nError, const char* fmt, ...)
 	if (fmt != NULL) {
 		va_list args;
 		va_start(args, fmt);
-		V_vsnprintf(m_pErrorString, m_nMaxlength, fmt, args);
+		vsnprintf(m_pErrorString, m_nMaxlength, fmt, args);
 		va_end(args);
 	}
 }
@@ -251,7 +251,7 @@ ParseError_t ParserContext::Process(const ucs2_t* pInputBuffer, ILanguageFilePar
 			}
 		}
 
-		DevMsg(2, "new state: %u key: '%s' value: '%s' token: %u ('%s')\n", newState, key, value, tokenType, pszToken);
+		//DevMsg(2, "new state: %u key: '%s' value: '%s' token: %u ('%s')\n", newState, key, value, tokenType, pszToken);
 	}
 
 	pListener->State_Ended(nAction != Parse_Continue, nAction == Parse_HaltFail || m_nErrorCode != ParseError_None);
@@ -378,20 +378,20 @@ bool ParserContext::EvaluateCondition(const char* pszCond)
 	}
 
 	if (*pszCond == '$') {
-		if (V_stricmp(pszCond + 1, "WIN32") == 0) {
+		if (strcasecmp(pszCond + 1, "WIN32") == 0) {
 			return true;
 		}
-		else if (V_stricmp(pszCond + 1, "X360") == 0) {
+		else if (strcasecmp(pszCond + 1, "X360") == 0) {
 			return false;
 		}
-		else if (V_stricmp(pszCond + 1, "PS3") == 0) {
+		else if (strcasecmp(pszCond + 1, "PS3") == 0) {
 			return false;
 		}
-		else if (V_stricmp(pszCond + 1, "LOWVIOLENCE") == 0) {
-			return engine->IsLowViolence();
+		else if (strcasecmp(pszCond + 1, "LOWVIOLENCE") == 0) {
+			return false; //engine->IsLowViolence();
 		}
 	}
 
-	DevWarning("Unknown condition \"%s\"\n", pszCond);
+	//DevWarning("Unknown condition \"%s\"\n", pszCond);
 	return false;
 }

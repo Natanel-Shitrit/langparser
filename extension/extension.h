@@ -3,6 +3,8 @@
 
 #include "smsdk_ext.h"
 #include "../ILanguageFileParser.h"
+#include <filesystem>
+#include <fstream>
 
 class CExtension :
 	public SDKExtension,
@@ -31,7 +33,7 @@ public: // SDKExtension
 	 * @param late			Whether or not Metamod considers this a late load.
 	 * @return				True to succeed, false to fail.
 	 */
-	bool SDK_OnMetamodLoad(ISmmAPI* ismm, char* error, size_t maxlen, bool late) override;
+	// bool SDK_OnMetamodLoad(ISmmAPI* ismm, char* error, size_t maxlen, bool late) override;
 };
 
 #endif // _INCLUDE_LANGPARSER_EXT_H_
