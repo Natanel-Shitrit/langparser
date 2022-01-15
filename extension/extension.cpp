@@ -1,16 +1,15 @@
 #include "extension.h"
 #include "context.h"
-
-#include <filesystem.h>
 #include <byteswap.h>
 
 CExtension g_Extension;
 SMEXT_LINK(&g_Extension);
 
-IFileSystem* g_pFileSystem = NULL;
-
 ParseError_t CExtension::ParseFile(const char* pszRelativePath, ILanguageFileParserListener* pListener, char* error, size_t maxlength)
 {
+	std::ifstream file(pszRelativePath, std::ios::binary);
+	META_CONPRINTF("file size: %d", std::filesystem::file_size(pszRelativePath));
+/*
 	FileHandle_t file = g_pFileSystem->Open(pszRelativePath, "rb", "GAME");
 	if (file == FILESYSTEM_INVALID_HANDLE) {
 		V_snprintf(error, maxlength, "Unable to open file \"%s\"", pszRelativePath);
@@ -58,6 +57,8 @@ ParseError_t CExtension::ParseFile(const char* pszRelativePath, ILanguageFilePar
 	ParseError_t result = CExtension::ParseBuffer(pBuffer + 1, pListener, error, maxlength);
 	g_pFileSystem->FreeOptimalReadBuffer(pBuffer);
 	return result;
+*/
+	return ParseError_None;
 }
 
 ParseError_t CExtension::ParseBuffer(const ucs2_t* pDataIn, ILanguageFileParserListener* pListener, char* error, size_t maxlength)
