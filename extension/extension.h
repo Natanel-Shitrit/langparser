@@ -5,6 +5,7 @@
 #include "../ILanguageFileParser.h"
 #include <filesystem>
 #include <fstream>
+#include <iostream>
 
 class CExtension :
 	public SDKExtension,
@@ -34,6 +35,8 @@ public: // SDKExtension
 	 * @return				True to succeed, false to fail.
 	 */
 	// bool SDK_OnMetamodLoad(ISmmAPI* ismm, char* error, size_t maxlen, bool late) override;
+private: // Other
+	std::u16string ReadUTF16LEFile(const char* filepath);
 };
 
 #endif // _INCLUDE_LANGPARSER_EXT_H_
